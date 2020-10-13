@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors({
     origin: process.env.ORIGIN,
-    methods: ['GET', 'PUT', 'POST', 'DELETE', 'UPDATE'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 204
@@ -22,7 +22,7 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-app.use('/api', userRouter);
+app.use('/api/users', userRouter);
 
 app.listen(PORT, () => {
     console.log(`Server works on port ${PORT}`)
