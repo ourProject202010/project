@@ -2,6 +2,7 @@
 	"compileOnSave": true,
 	"declaration": true,
 	"compilerOptions": {
+		"types": ["node"],
 		"module": "commonjs",
 		"target": "es6",
 		"outDir": "build/src",
@@ -10,6 +11,9 @@
 		"strict": true,
 		"allowJs": true
 	},
+	"files": [
+		"./node_modules/@types/node/index.d.ts"
+	],
 	"include": [
 		"server/**/*"
 	],
