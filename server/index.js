@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 //utils
-const {getPort} = require('./utils/getport');
+const getPort = require('./utils/getport');
 
 //routes
 const {userRouter} = require('./routes')
