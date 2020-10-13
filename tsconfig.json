@@ -1,0 +1,19 @@
+{
+	"compileOnSave": true,
+	"declaration": true,
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"outDir": "build/src",
+		"rootDir": "server",
+		"sourceMap": false,
+		"strict": true,
+		"allowJs": true
+	},
+	"include": [
+		"server/**/*"
+	],
+	"exclude" : [
+		"node_modules"
+	]
+}
