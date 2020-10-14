@@ -10,7 +10,7 @@
     "build:live": "../node_modules/.bin/nodemon --watch \\\"server/**/*.ts\\\" --exec \\\"ts-node\\\" server/index.ts",
     "client": "npm run start --prefix ../client",
     "buildClient": "npm run build --prefix ../client",
-    "dev": "../node_modules/.bin/concurrently –kill-others-on-fail \\\"nodemon ./server/index\\\" \\\"npm run client\\\""
+    "dev": "concurrently –kill-others-on-fail \"nom run start\" \"npm run client\""
   },
   "keywords": [],
   "author": "Ruslan Shukiurov & Vitalii Rybachuk",

@@ -1,0 +1,17 @@
+.label-error {
+    color: #ff0000;
+}
+
+.input-error {
+    border: 1px solid #ff0000 !important;
+}
+
+.inputWrapper input:focus ~ label{
+    top: -18px;
+    font-size: .9rem;
+    transition: all .2s ease;
+}
+
+.inputWrapper input:valid ~ label{
+    display: none;
+}
