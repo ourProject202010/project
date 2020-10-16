@@ -1,7 +1,14 @@
+@import '~reset-css/reset.css';
+
 body {
   margin: 0;
   font-family: 'Varta', sans-serif;
   font-size: 16px;
+  color: #5e5e5e;
+}
+
+.center {
+  text-align: center;
 }
 
 code {

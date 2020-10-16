@@ -4,8 +4,16 @@ const validation = (values: FormsValuesType) => {
     const errors: FormsErrorsType = {};
     if (!values.phone) {
         errors.phone = 'Обьязательное поле!';
-    } else if (values.phone.length < 13) {
-        errors.phone = `Номер телефона должен состоять из 13 символов. Вы ввели ${values.phone.length}`;
+    } else if (!/^(\+38|8)?0{1}[5679]{1}[03456789]{1}\d{7}$/.test(values.phone)) {
+        errors.phone = `Не корректный номер телефона`;
+    }
+    else {
+        if (values.phone.charAt(0) === '0') {
+            values.phone = '+38'+values.phone;
+        }
+         else if (values.phone.charAt(0) === '8') {
+            values.phone = '+3'+values.phone;
+        }
     }
 
     if (!values.email) {
@@ -17,7 +25,13 @@ const validation = (values: FormsValuesType) => {
     if (!values.password) {
         errors.password = 'Обьязательное поле!';
     } else if (values.password.length < 6) {
-        errors.password = `Пароль должен состоять из не менее 6-ти символов. Вы ввели ${values.password.length}`
+        errors.password = `Пароль должен состоять из не менее 6-ти символов.`
+    }
+
+    if (!values.repassword) {
+        errors.repassword = 'Обьязательное поле!';
+    } else if (values.repassword !== values.password) {
+        errors.repassword = `Пароли не совпадают`
     }
     return errors
 }
