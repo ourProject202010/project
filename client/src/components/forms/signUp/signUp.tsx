@@ -1,7 +1,10 @@
 import React, {FC} from "react";
-import {useFormik, Field, Form} from 'formik';
+import {useFormik, Field, Form, FormikErrors} from 'formik';
 import validation from "../validation";
 import '../style.css'
+import SocialButtons from "../socialButtons/socialButtons";
+import SubmitButton from "../submitButton/submitButton";
+import InputField from "../inputField/inputField";
 
 type PropsType = {}
 
@@ -19,7 +22,18 @@ const SignUp:FC<PropsType> = (props) => {
             console.log(values)
         }
     })
-    const {errors, touched, handleSubmit} = formik;
+    const {errors, values, touched, handleSubmit, handleChange, handleBlur} = formik;
+
+    const getObjLength = (obj: any) => {
+        return Object.keys(obj).length;
+    }
+
+    // const buttonConfig: Array<{[key: string]: string}> = [
+    //     {ru: 'Ваш телефон', en: 'phone'},
+    //     {ru: 'Ваш email', en: 'email'},
+    //     {ru: 'Ваш пароль', en: 'password'},
+    //     {ru: 'Повторите пароль', en: 'repassword'},
+    // ]
 
     return (
         <div className='formWrapper'>
@@ -27,74 +41,51 @@ const SignUp:FC<PropsType> = (props) => {
                 <img src={`${process.env.PUBLIC_URL}/assets/img/logo.png`} alt=""/>
             </div>
             <form onSubmit={handleSubmit}>
-                <div className='inputWrapper'>
-                    <input
-                        type='text'
-                        id='phone'
-                        name='phone'
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.phone}
-                        required={true}
-                        className={errors.phone && touched.phone ? 'input-error' : ''}
-                    />
-                    <label htmlFor='phone'>Ваш телефон</label>
-                    {
-                        errors.phone && touched.phone ? <p className="error-message">{errors.phone}</p> : null
-                    }
-                </div>
-                <div className='inputWrapper'>
-                    <input
-                        type='email'
-                        id='email'
-                        name='email'
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        onBlur={formik.handleBlur}
-                        required={true}
-                        className={errors.email && touched.email ? 'input-error' : ''}
-                    />
-                    <label htmlFor='email'>Ваш email</label>
-                    {
-                        errors.email && touched.email ? <p className="error-message">{errors.email}</p> : null
-                    }
-                </div>
-                <div className='inputWrapper'>
-                    <input
-                        type='password'
-                        id='password'
-                        name='password'
-                        onChange={formik.handleChange}
-                        value={formik.values.password}
-                        onBlur={formik.handleBlur}
-                        required={true}
-                        className={errors.password && touched.password ? 'input-error' : ''}
-                    />
-                    <label htmlFor='password'>Ваш пароль</label>
-                    {
-                        errors.password && touched.password ? <p className="error-message">{errors.password}</p> : null
-                    }
-                </div>
-                <div className='inputWrapper'>
-                    <input
-                        type='password'
-                        id='repassword'
-                        name='repassword'
-                        onChange={formik.handleChange}
-                        value={formik.values.repassword}
-                        onBlur={formik.handleBlur}
-                        required={true}
-                        className={errors.repassword && touched.repassword ? 'input-error' : ''}
-                    />
-                    <label htmlFor='repassword'>Повторите пароль</label>
-                    {
-                        errors.repassword && touched.repassword ? <p className="error-message">{errors.repassword}</p> : null
-                    }
-                </div>
-                <p className="center">
-                    ИЛИ
-                </p>
-                <button type='submit'>Регистриция</button>
+                <InputField
+                    type='text'
+                    name='phone'
+                    value={values.phone}
+                    touched={touched['phone']}
+                    errors={errors.phone}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    label='Ваш телефон'
+                />
+                <InputField
+                    type='email'
+                    name='email'
+                    value={values.email}
+                    touched={touched['email']}
+                    errors={errors.email}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    label='Ваш email'
+                />
+                <InputField
+                    type='password'
+                    name='password'
+                    value={values.password}
+                    touched={touched['password']}
+                    errors={errors.password}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    label='Ваш пароль'
+                />
+                <InputField
+                    type='password'
+                    name='repassword'
+                    value={values.repassword}
+                    touched={touched['repassword']}
+                    errors={errors.repassword}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    label='Повторите пароль'
+                />
+                <p className="center">ИЛИ</p>
+                <SocialButtons />
+                <SubmitButton
+                    disabled={getObjLength(errors) !== 0 || getObjLength(touched) !== getObjLength(formik.values)}
+                    title='Зарегистрироваться' />
             </form>
         </div>
     )
