@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import styled from "styled-components";
 
 const Line = styled.div`
@@ -69,7 +69,7 @@ const Hovered = styled.div`
     }
 `
 
-const MenuButton = () => {
+const MenuButton:FC<{}> = (props) => {
     return (
         <MenuButtonWrapper>
             <Hovered />
