@@ -17,14 +17,17 @@ const Button = styled.button`
     text-transform: uppercase;
     font-size: 1.1 rem;
     color: #000;
+    
     &:disabled {
         background: #fff;
         color: #e3e3e3;
+        
         &: hover {
             background: #fff;
             color: #e3e3e3;
         }
     }
+    
     &:hover {
         background: linear-gradient(to left, #a3daf3 10%, #17a1df 90%);
     }

@@ -2,12 +2,16 @@ import React from "react";
 import image from './assets/img/login_page_img.jpg';
 import styled from 'styled-components'
 import SignUp from "../components/forms/signUp/signUp";
+import ErrorHandler from "../components/errorHandler/errorHandler";
+import MenuButton from "../components/menuButton/menuButton";
 
 const LoginPage = () => {
+
     const Image = styled.img`
         max-width: 1000px
         max-height: 100%
     `;
+
     const LeftSide = styled.div`
         width: 900px;
         background: url(${image});
@@ -16,6 +20,7 @@ const LoginPage = () => {
     `;
 
     const RightSide = styled.div`
+        position: relative;
         width: 700px;
         display: flex;
         justify-content: center;
@@ -28,7 +33,10 @@ const LoginPage = () => {
                 <div className="row">
                     <LeftSide className="left"></LeftSide>
                     <RightSide className="right">
-                        <SignUp />
+                        <MenuButton />
+                        <ErrorHandler>
+                            <SignUp />
+                        </ErrorHandler>
                     </RightSide>
                 </div>
             </div>

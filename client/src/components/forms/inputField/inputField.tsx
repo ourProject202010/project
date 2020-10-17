@@ -25,7 +25,7 @@ const InputField:FC<PropsType> = (props) => {
                 required={true}
                 className={errors && touched ? 'input-error' : ''}
             />
-            <label htmlFor='phone'>{label}</label>
+            <label htmlFor={name}>{label}</label>
             {
                 errors && touched ? <p className="error-message">{errors}</p> : null
             }

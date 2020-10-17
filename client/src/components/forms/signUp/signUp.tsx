@@ -6,10 +6,7 @@ import SocialButtons from "../socialButtons/socialButtons";
 import SubmitButton from "../submitButton/submitButton";
 import InputField from "../inputField/inputField";
 
-type PropsType = {}
-
-const SignUp:FC<PropsType> = (props) => {
-
+const SignUp:FC<{}> = (props) => {
     const formik = useFormik({
         initialValues: {
             phone: '',
@@ -23,17 +20,20 @@ const SignUp:FC<PropsType> = (props) => {
         }
     })
     const {errors, values, touched, handleSubmit, handleChange, handleBlur} = formik;
+    const restValues: {[key: string]: string} = {...values};
+    const restTouched: {[key: string]: boolean | undefined} = {...touched};
+    const restErrors: {[key: string]: string | undefined} = {...errors};
 
     const getObjLength = (obj: any) => {
         return Object.keys(obj).length;
     }
 
-    // const buttonConfig: Array<{[key: string]: string}> = [
-    //     {ru: 'Ваш телефон', en: 'phone'},
-    //     {ru: 'Ваш email', en: 'email'},
-    //     {ru: 'Ваш пароль', en: 'password'},
-    //     {ru: 'Повторите пароль', en: 'repassword'},
-    // ]
+    const buttonConfig: Array<{[key: string]: string}> = [
+        {ru: 'Ваш телефон', en: 'phone'},
+        {ru: 'Ваш email', en: 'email'},
+        {ru: 'Ваш пароль', en: 'password'},
+        {ru: 'Повторите пароль', en: 'repassword'},
+    ];
 
     return (
         <div className='formWrapper'>
@@ -41,50 +41,28 @@ const SignUp:FC<PropsType> = (props) => {
                 <img src={`${process.env.PUBLIC_URL}/assets/img/logo.png`} alt=""/>
             </div>
             <form onSubmit={handleSubmit}>
-                <InputField
-                    type='text'
-                    name='phone'
-                    value={values.phone}
-                    touched={touched['phone']}
-                    errors={errors.phone}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    label='Ваш телефон'
-                />
-                <InputField
-                    type='email'
-                    name='email'
-                    value={values.email}
-                    touched={touched['email']}
-                    errors={errors.email}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    label='Ваш email'
-                />
-                <InputField
-                    type='password'
-                    name='password'
-                    value={values.password}
-                    touched={touched['password']}
-                    errors={errors.password}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    label='Ваш пароль'
-                />
-                <InputField
-                    type='password'
-                    name='repassword'
-                    value={values.repassword}
-                    touched={touched['repassword']}
-                    errors={errors.repassword}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    label='Повторите пароль'
-                />
+                {
+                    buttonConfig.map( (elem) => {
+                        let {ru, en} = elem;
+                        return (
+                            <InputField
+                                key={en}
+                                type={en === 'password' || en === 'repassword' ? 'password' : en === 'email' ? 'email' : 'text'}
+                                name={en}
+                                value={restValues[en]}
+                                touched={restTouched[en]}
+                                errors={restErrors[en]}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                label={ru}
+                            />
+                        )
+                    })
+                }
                 <p className="center">ИЛИ</p>
                 <SocialButtons />
                 <SubmitButton
-                    disabled={getObjLength(errors) !== 0 || getObjLength(touched) !== getObjLength(formik.values)}
+                    disabled={getObjLength(errors) !== 0 || getObjLength(touched) !== getObjLength(values)}
                     title='Зарегистрироваться' />
             </form>
         </div>
