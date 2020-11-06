@@ -10,7 +10,8 @@
     "build:live": "../node_modules/.bin/nodemon --watch \\\"server/**/*.ts\\\" --exec \\\"ts-node\\\" server/index.ts",
     "client": "npm run start --prefix ../client",
     "buildClient": "npm run build --prefix ../client",
-    "dev": "concurrently –kill-others-on-fail \"nom run start\" \"npm run client\""
+    "dev": "concurrently –kill-others-on-fail \"npm run start\" \"npm run client\"",
+    "debug": "concurrently –kill-others-on-fail \"nodemon --inspect server.js\" \"npm run client\""
   },
   "keywords": [],
   "author": "Ruslan Shukiurov & Vitalii Rybachuk",
@@ -21,6 +22,7 @@
     "cors": "^2.8.5",
     "custom-env": "^2.0.1",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
     "http-errors": "^1.8.0",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.5",

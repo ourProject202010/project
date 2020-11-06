@@ -13,7 +13,8 @@ const start = () => {
                 useFindAndModify: false,
                 useUnifiedTopology: true,
             })
-            .then(() => console.log('DB connection successful!'));
+            .then(() => console.log('DB connection successful!'))
+            .catch((error) => console.log('DB connection error:', error.message))
 
         const port = process.env.PORT || 3001;
         app.listen(port, () => {

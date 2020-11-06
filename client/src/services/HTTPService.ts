@@ -1,5 +1,8 @@
+import {GetParamsType} from "../types";
+
+
 export class HTTPService {
-    baseUrl: string = 'http://localhost:3001/api/';
+    baseUrl: string = 'http://localhost:4000/api/';
 
 
     makeGet = async (params: GetParamsType) => {
@@ -13,20 +16,22 @@ export class HTTPService {
         }
     }
     makePost = async (params: GetParamsType) => {
-        const {path, method, body, headers} = params;
+        const {path, data} = params;
+        const token = localStorage.getItem('token');
+        const body = JSON.stringify(data)
         try {
-            const response = await fetch(`${this.baseUrl}path`, {method, headers, body});
+            const response = await fetch(`${this.baseUrl}${path}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authentication': `Bearer ${token}`
+                },
+                body
+            });
             const result = await response.json();
         }
         catch(error) {
             console.log('get error', error)
         }
     }
-}
-
-type GetParamsType = {
-    path: string
-    method: string
-    headers: {[key: string]: string}
-    body: any
 }

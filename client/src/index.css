@@ -16,19 +16,44 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+  color: #5e5e5e;
+}
+
 .container {
   width: 1600px;
   margin: 0 auto;
   height: 100%;
-  background: #fafafa;
   overflow: hidden;
 }
 
 .row {
   display: flex;
   height: 100%;
+  justify-content: space-between;
 }
 
-.login-page {
+section {
   height: 100vh;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.error-label {
+  color: red !important;
+}
+
+.error-input {
+  border-color: red !important;
+}
+
+.left-side {
+  width: 40%;
+}
+
+.right-side {
+  width: 55%;
 }

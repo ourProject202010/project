@@ -11,3 +11,8 @@ export type FormsErrorsType = {
     password?: string
     repassword?: string
 }
+
+export type GetParamsType = {
+    path: string
+    data: any
+}

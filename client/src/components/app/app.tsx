@@ -1,13 +1,21 @@
 import React from "react";
-import LoginPage from "../../pages/login-page";
-import ErrorHandler from "../errorHandler/errorHandler";
+import { Switch, Route } from "react-router-dom";
 import Preloader from "../preloader/preloader";
+import SignIn from "../forms/form";
+import HomePage from "../../pages/home-page";
+import Header from "../header/header";
 
 const App = () => {
     return (
-        <ErrorHandler>
-            <LoginPage />
-        </ErrorHandler>
+        <>
+        <Header/>
+        <Switch>
+            <Route exact path='/:where?' render={({match}) => {
+                const {where} = match.params;
+                return <HomePage path={where}/>
+            }}/>
+        </Switch>
+            </>
     )
 }
 
